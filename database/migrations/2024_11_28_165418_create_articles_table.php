@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('thumbnail');
+            $table->longText('content');
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('author_id')->constrained()->cascadeOnDelete();
+            $table->enum('is_featured',['featured', 'not_featured'])->default('not_featured');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
