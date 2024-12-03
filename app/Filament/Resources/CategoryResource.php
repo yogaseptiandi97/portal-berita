@@ -30,7 +30,9 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->live(debounce: 1000),
+                TextInput::make('name')->required()
+                ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                ->live(debounce: 1000),
                 TextInput::make('slug')->disabled(),
                 FileUpload::make('icon')->image()->required()
                 //
