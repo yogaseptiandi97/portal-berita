@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdsBanner;
 use App\Models\Article;
 use App\Models\Author;
 use App\Models\Category;
@@ -14,20 +15,36 @@ class FrontController extends Controller
         $categories = Category::all();
 
         $articles = Article::with(['category'])
-        ->where('is_featured', 2)
+        ->where('is_featured', '0')
         ->latest()
         ->take(3)
         ->get();
 
         $featured = Article::with(['category'])
         ->where('is_featured', 1)
-        ->latest()
+        ->inRandomOrder()
         ->take(3)
         ->get();
 
         $authors = Author::all();
 
+        $ads = AdsBanner::where('is_active', 'active')
+        ->inRandomOrder()
+        ->first();
 
-        return view('front.index',compact('categories', 'articles', 'featured'));
+        $category_articles = Article::whereHas('category', function ($query){
+            $query->where('name', 'idoru');
+        })
+        // ->where('is_featured', 0)
+        ->latest()
+        ->take(6)
+        ->get();
+
+        $category_lists = Category::with('article')->get();
+        // $category_lists = Category::with(['article' => function ($query) {
+        //     $query->orderByDesc('is_featured')->orderBy('created_at', 'desc');
+        // }])->get();
+
+        return view('front.index',compact('categories', 'articles', 'featured', 'authors', 'ads', 'category_articles', 'category_lists'));
     }
 }
