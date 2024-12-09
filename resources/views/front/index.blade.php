@@ -10,19 +10,20 @@
         rel="stylesheet" />
     <!-- CSS -->
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="font-[Poppins] pb-[72px]">
     <nav id="Navbar" class="max-w-[1130px] mx-auto flex justify-between items-center mt-[30px]">
         <div class="logo-container flex gap-[30px] items-center">
-            <a href="index.html" class="flex shrink-0">
-                <img src="assets/images/logos/logo.svg" alt="logo" />
+            <a href="{{ route('front.index')}}" class="flex shrink-0">
+                <img src="{{ asset('assets/images/logos/logo.svg') }}" alt="logo" />
             </a>
             <div class="h-12 border border-[#E8EBF4]"></div>
             <form action="searchPage.html"
                 class="w-[450px] flex items-center rounded-full border border-[#E8EBF4] p-[12px_20px] gap-[10px] focus-within:ring-2 focus-within:ring-[#FF6B18] transition-all duration-300">
                 <button type="submit" class="w-5 h-5 flex shrink-0">
-                    <img src="assets/images/icons/search-normal.svg" alt="icon" />
+                    <img src="{{ asset('assets/images/icons/search-normal.svg') }}" alt="icon" />
                 </button>
                 <input type="text" name="" id=""
                     class="appearance-none outline-none w-full font-semibold placeholder:font-normal placeholder:text-[#A3A6AE]"
@@ -36,7 +37,7 @@
             <a href=""
                 class="rounded-full p-[12px_22px] flex gap-[10px] font-bold transition-all duration-300 bg-[#FF6B18] text-white hover:shadow-[0_10px_20px_0_#FF6B1880]">
                 <div class="w-6 h-6 flex shrink-0">
-                    <img src="assets/images/icons/favorite-chart.svg" alt="icon" />
+                    <img src="{{ asset('assets/images/icons/favorite-chart.svg') }}" alt="icon" />
                 </div>
                 <span>Post Ads</span>
             </a>
@@ -74,11 +75,11 @@
                         <div class="prevNextButtons flex items-center gap-4 mb-[60px]">
                             <button
                                 class="button--previous appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
-                                <img src="assets/images/icons/arrow.svg" alt="arrow" />
+                                <img src="{{ asset('assets/images/icons/arrow.svg') }}" alt="arrow" />
                             </button>
                             <button
                                 class="button--next appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300 rotate-180">
-                                <img src="assets/images/icons/arrow.svg" alt="arrow" />
+                                <img src="{{ asset('assets/images/icons/arrow.svg') }}" alt="arrow" />
                             </button>
                         </div>
                     </div>
@@ -105,7 +106,7 @@
                         <div
                             class="thumbnail-container w-full h-[200px] rounded-[20px] flex shrink-0 overflow-hidden relative">
                             <p
-                                class="badge-white absolute top-5 left-5 rounded-full p-[8px_18px] bg-white font-bold text-xs leading-[18px]">
+                                class="badge-white absolute top-5 left-5 rounded-full p-[8px_18px] bg-white font-bold text-xs leading-[18px] uppercase">
                                 {{ $article->category->name }}</p>
                             <img src="{{ Storage::url($article->thumbnail) }}" class="object-cover w-full h-full"
                                 alt="thumbnail" />
@@ -113,7 +114,7 @@
                         <div class="card-info flex flex-col gap-[6px]">
                             <h3 class="font-bold text-lg leading-[27px]">{{ substr($article->name, 0, 25) }}
                                 {{ strlen($article->name) > 25 ? '...' : '' }} </h3>
-                            <p class="text-sm leading-[21px] text-[#A3A6AE]">{{ $article->created_at }}</p>
+                            <p class="text-sm leading-[21px] text-[#A3A6AE]">{{ $article->created_at->format('M d, Y') }}</p>
                         </div>
                     </div>
                 </a>
@@ -172,7 +173,7 @@
             </a>
             <p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
                 Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-                        src="assets/images/icons/message-question.svg" alt="icon" /></a>
+                        src="{{asset('assets/images/icons/message-question.svg')}}" alt="icon" /></a>
             </p>
         </div>
     </section>
@@ -183,7 +184,7 @@
                     Latest For You <br />
                     in {{ $category_list->name }}
                 </h2>
-                <a href="categoryPage.html"
+                <a href="{{ route('front.category', $category_list->slug) }}"
                     class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">Explore
                     All</a>
             </div>
