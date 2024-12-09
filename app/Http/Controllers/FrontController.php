@@ -75,4 +75,14 @@ class FrontController extends Controller
         ->first();
         return view('front.category', compact('category', 'categories', 'ads'));
     }
+
+    public function author(Author $author){
+        $categories = Category::all();
+        
+        $ads = AdsBanner::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        ->first();
+        return view('front.author', compact('categories', 'author','ads'));
+    }
 }
