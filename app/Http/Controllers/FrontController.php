@@ -41,10 +41,29 @@ class FrontController extends Controller
         ->get();
 
         $category_lists = Category::with('article')->get();
-        // $category_lists = Category::with(['article' => function ($query) {
+        // $category_featured_lists = Category::with(['article' => function ($query) {
         //     $query->orderByDesc('is_featured')->orderBy('created_at', 'desc');
         // }])->get();
+        // $category_featured_lists = Category::with(['article' => function ($query) {
+        //     $query->where('is_featured', 1);
+        // }])
+        // ->inRandomOrder()
+        
+        $category_featured_lists = Article::with(['category'])
+        ->where('is_featured', 1)
+        ->inRandomOrder()
+        ->first();
+        $category_nonfeatured_lists = Article::with('category')
+        ->where('is_featured', '0')
+        ->latest()
+        ->take(6)
+        ->get();
+        $nonfeatured_articles = Article::with(['category'])
+        ->where('is_featured', '0')
+        ->latest()
+        ->take(3)
+        ->get();
 
-        return view('front.index',compact('categories', 'articles', 'featured', 'authors', 'ads', 'category_articles', 'category_lists'));
+        return view('front.index',compact('categories', 'articles', 'featured', 'authors', 'ads', 'category_articles', 'category_lists', 'category_featured_lists', 'category_nonfeatured_lists', 'nonfeatured_articles'));
     }
 }
