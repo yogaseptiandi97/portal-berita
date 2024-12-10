@@ -53,6 +53,8 @@ class FrontController extends Controller
         ->where('is_featured', 1)
         ->inRandomOrder()
         ->first();
+
+
         $category_nonfeatured_lists = Article::with('category')
         ->where('is_featured', '0')
         ->latest()
@@ -99,5 +101,29 @@ class FrontController extends Controller
         ->where('name', 'like', '%'.$keyword.'%')->paginate(6);
 
         return view('disfrontplay.search', compact('articles', 'keyword', 'categories'));
+    }
+
+    public function details(Article $article){
+        $categories = Category::all();
+        
+        $articles = Article::with(['category'])
+        ->where('is_featured', '0')
+        ->where('id', '!=', $article->id)
+        ->latest()
+        ->take(3)
+        ->get();
+
+        $ads = AdsBanner::where('is_active', 'active')
+        ->where('type', 'banner')
+        ->inRandomOrder()
+        ->first();
+
+        $author_articles = Article::where('author_id', $article->author_id)
+        ->where('id', '!=', $article->id)
+        ->inRandomOrder()
+        ->take(3)
+        ->get();
+
+        return view('front.details', compact('article', 'author_articles', 'categories', 'articles', 'ads'));
     }
 }
