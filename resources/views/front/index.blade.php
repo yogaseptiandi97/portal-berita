@@ -156,10 +156,12 @@
                     </div>
                 @else
                     <div class="flex justify-between items-center h-fit">
-                        @if ($category_list->id == $category_featured_lists->category_id)
+                        @forelse ($category_featured_lists as $category_featured_list)
+                            
+                        @if ($category_list->id == $category_featured_list->category_id)
                             <div
                                 class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[20px] overflow-hidden">
-                                <img src="{{ Storage::url($category_featured_lists->thumbnail) }}"
+                                <img src="{{ Storage::url($category_featured_list->thumbnail) }}"
                                     class="thumbnail absolute w-full h-full object-cover" alt="icon" />
                                 <div
                                     class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10">
@@ -167,20 +169,22 @@
                                 <div class="card-detail w-full flex items-end p-[30px] relative z-20">
                                     <div class="flex flex-col gap-[10px]">
                                         <p class="text-white">Featured</p>
-                                        <a href="{{ route('front.details', $category_featured_lists->slug) }}"
-                                            class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{ $category_featured_lists->name }}</a>
+                                        <a href="{{ route('front.details', $category_featured_list->slug) }}"
+                                            class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{ $category_featured_list->name }}</a>
                                         <p class="text-white">
-                                            {{ $category_featured_lists->created_at->format('M d, Y') }}</p>
+                                            {{ $category_featured_list->created_at->format('M d, Y') }}</p>
                                     </div>
                                 </div>
                             </div>
-                        @else
-                            <div class="flex flex-col text-center gap-[14px] items-center">
-                                <h2 class="font-bold text-[16px] leading-[39px]">
-                                    tidak ada berita yang disematkan
-                                </h2>
-                            </div>
+                        
                         @endif
+                        @empty
+                        <div class="flex flex-col text-center gap-[14px] items-center">
+                            <h2 class="font-bold text-[16px] leading-[39px]">
+                                tidak ada berita yang disematkan
+                            </h2>
+                        </div>
+                        @endforelse
 
                         <div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
                             <div class="w-[455px] flex flex-col gap-5 shrink-0">

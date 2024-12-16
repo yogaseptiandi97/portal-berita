@@ -52,7 +52,7 @@ class FrontController extends Controller
         $category_featured_lists = Article::with(['category'])
         ->where('is_featured', 1)
         ->inRandomOrder()
-        ->first();
+        ->get();
 
 
         $category_nonfeatured_lists = Article::with('category')

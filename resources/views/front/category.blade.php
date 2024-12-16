@@ -21,7 +21,7 @@
                 {{ $category->name }} News
             </h1>
             <div id="search-cards"
-                class="grid grid-cols-1 gap-[30px] sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-[30px] ">
+                class="m-5 grid grid-cols-1 gap-[30px] sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-[30px] ">
                 @forelse ($category->article as $article)
                     <a href="{{ route('front.details', $article->slug) }}" class="card">
                         <div
@@ -54,7 +54,7 @@
         <section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[70px]">
             <div class="flex flex-col gap-3 shrink-0 w-fit">
                 <a href="{{ $ads->link }}">
-                    <div class="w-[900px] h-[120px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
+                    <div class="max-w-50 md:w-[900px] h-[120px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
                         <img src="{{ Storage::url($ads->thumbnail) }}" class="object-cover w-full h-full" alt="ads" />
                     </div>
                 </a>
