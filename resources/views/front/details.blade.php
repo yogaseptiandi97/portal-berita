@@ -3,17 +3,17 @@
 
     <body class="font-[Poppins]">
         <x-navbar />
-        <nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
-            @foreach ($categories as $items_category)
-                <a href="{{ route('front.category', $items_category->slug) }}"
-                    class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
+        <nav id="Category"
+            class="max-w-[1130px] mx-auto flex overflow-x-auto items-center gap-4 mt-[30px] scroll-snap-x scroll-px-2 md:justify-center">
+            @foreach ($categories as $category)
+                <a href="{{ route('front.category', $category->slug) }}"
+                    class="rounded-full flex-shrink-0 p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18] scroll-snap-align-start">
                     <div class="w-6 h-6 flex shrink-0">
-                        <img src="{{ Storage::url($items_category->icon) }}" alt="icon" />
+                        <img src="{{ Storage::url($category->icon) }}" alt="icon" />
                     </div>
-                    <span>{{ $items_category->name }}</span>
+                    <span>{{ $category->name }}</span>
                 </a>
             @endforeach
-
         </nav>
         <header class="flex flex-col items-center gap-[50px] mt-[70px]">
             <div id="Headline" class="max-w-[1130px] mx-auto flex flex-col gap-4 items-center">
@@ -172,8 +172,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
-@endpush
+    <style>
+        /* Scroll snapping CSS */
+        .scroll-snap-x {
+            display: flex;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            /* For Firefox */
+        }
 
+        .scroll-snap-x::-webkit-scrollbar {
+            display: none;
+            /* For Chrome, Safari, and Edge */
+        }
+
+        .scroll-snap-align-start {
+            scroll-snap-align: start;
+        }
+    </style>
+@endpush
 @push('after-scripts')
     <script src="js/two-lines-text.js"></script>
 @endpush
