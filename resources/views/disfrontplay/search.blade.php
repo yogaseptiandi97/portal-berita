@@ -3,26 +3,26 @@
 
     <body class="font-[Poppins]">
         <x-navbar />
-        <nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
-            @foreach ($categories as $items_category)
-                <a href="{{ route('front.category', $items_category->slug) }}"
-                    class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
+        <nav id="Category"
+            class="max-w-[1130px] mx-auto flex overflow-x-auto items-center gap-4 mt-[30px] scroll-snap-x scroll-px-2 md:justify-center">
+            @foreach ($categories as $category)
+                <a href="{{ route('front.category', $category->slug) }}"
+                    class="rounded-full flex-shrink-0 p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18] scroll-snap-align-start">
                     <div class="w-6 h-6 flex shrink-0">
-                        <img src="{{ Storage::url($items_category->icon) }}" alt="icon" />
+                        <img src="{{ Storage::url($category->icon) }}" alt="icon" />
                     </div>
-                    <span>{{ $items_category->name }}</span>
+                    <span>{{ $category->name }}</span>
                 </a>
             @endforeach
-
         </nav>
         <section id="heading" class="max-w-[1130px] mx-auto flex items-center flex-col gap-[30px] mt-[70px]">
-            <h1 class="text-4xl leading-[45px] font-bold text-center">
+            <h1 class="text-2xl leading-[35px] md:text-4xl  md:leading-[45px] font-bold text-center">
                 Explore Hot Trending <br />
                 Good News Today
             </h1>
             <form action="{{ route('disfrontplay.search') }}" method="GET">
                 <label for="search-bar"
-                    class="w-[500px] flex p-[12px_20px] transition-all duration-300 gap-[10px] ring-1 ring-[#E8EBF4] focus-within:ring-2 focus-within:ring-[#FF6B18] rounded-[50px] group">
+                    class="w-[300px] md:w-[500px] flex p-[12px_20px] transition-all duration-300 gap-[10px] ring-1 ring-[#E8EBF4] focus-within:ring-2 focus-within:ring-[#FF6B18] rounded-[50px] group">
                     <div class="w-5 h-5 flex shrink-0">
                         <img src="assets/images/icons/search-normal.svg" alt="icon" />
                     </div>
@@ -33,9 +33,9 @@
             </form>
         </section>
         <section id="search-result"
-            class="max-w-[1130px] mx-auto flex items-start flex-col gap-[30px] mt-[70px] mb-[100px]">
+            class="mx-5 w-[350px] md:max-w-[1130px] mx-auto flex items-start flex-col gap-[30px] mt-[70px] mb-[100px]">
             <h2 class="text-[26px] leading-[39px] font-bold">Search Result: <span>{{ ucfirst($keyword) }}</span></h2>
-            <div id="search-cards" class="grid grid-cols-3 gap-[30px]">
+            <div id="search-cards" class="m-5 grid grid-cols-1 gap-[30px] sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-[30px]">
                 @forelse ($articles as $article)
                     <a href="{{ route('front.details', $article->slug) }}" class="card">
                         <div
