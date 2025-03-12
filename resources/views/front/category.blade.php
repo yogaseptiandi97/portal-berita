@@ -5,13 +5,13 @@
         <x-navbar />
         <nav id="Category"
             class="max-w-[1130px] mx-auto flex overflow-x-auto items-center gap-4 mt-[30px] scroll-snap-x scroll-px-2 md:justify-center">
-            @foreach ($categories as $category)
-                <a href="{{ route('front.category', $category->slug) }}"
+            @foreach ($categories as $item_category)
+                <a href="{{ route('front.category', $item_category->slug) }}"
                     class="rounded-full flex-shrink-0 p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18] scroll-snap-align-start">
                     <div class="w-6 h-6 flex shrink-0">
-                        <img src="{{ Storage::url($category->icon) }}" alt="icon" />
+                        <img src="{{ Storage::url($item_category->icon) }}" alt="icon" />
                     </div>
-                    <span>{{ $category->name }}</span>
+                    <span>{{ $item_category->name }}</span>
                 </a>
             @endforeach
         </nav>

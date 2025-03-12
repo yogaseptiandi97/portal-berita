@@ -55,18 +55,18 @@ class FrontController extends Controller
         ->get();
 
 
-        $category_nonfeatured_lists = Article::with('category')
-        ->where('is_featured', '0')
-        ->latest()
-        ->take(6)
-        ->get();
-        $nonfeatured_articles = Article::with(['category'])
-        ->where('is_featured', '0')
-        ->latest()
-        ->take(3)
-        ->get();
+        // $category_nonfeatured_lists = Article::with('category')
+        // ->where('is_featured', '0')
+        // ->latest()
+        // ->take(6)
+        // ->get();
+        // $nonfeatured_articles = Article::with(['category'])
+        // ->where('is_featured', '0')
+        // ->latest()
+        // ->take(3)
+        // ->get();
 
-        return view('front.index',compact('categories', 'articles', 'featured', 'authors', 'ads', 'category_articles', 'category_lists', 'category_featured_lists', 'category_nonfeatured_lists', 'nonfeatured_articles'));
+        return view('front.index',compact('categories', 'articles', 'featured', 'authors', 'ads', 'category_articles', 'category_lists', 'category_featured_lists'));
     }
 
     public function category(Category $category){

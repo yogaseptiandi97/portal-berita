@@ -18,7 +18,7 @@
         <header class="flex flex-col items-center gap-[50px] mt-[70px]">
             <div id="Headline" class="max-w-[1130px] mx-auto flex flex-col gap-2 items-center text-center">
                 <p class="w-fit text-[#A3A6AE]">{{ $article->created_at->format('d M Y') }}, {{ $article->category->name }}</p>
-                <h1 id="Title" class="font-bold text-2xl md:text-4xl leading-tight">{{ $article->name }}</h1>
+                <h1 id="Title" class="font-bold text-2xl md:text-4xl leading-tight two-lines">{{ $article->name }}</h1>
                 <div class="flex items-center justify-center gap-[70px]">
                     <a id="Author" href="{{ route('front.author', $article->author->slug) }}" class="w-fit h-fit">
                         <div class="flex items-center gap-3">
@@ -114,7 +114,7 @@
                         Might Be Interested
                     </h2>
                 </div>
-                <div class="m-5 grid grid-cols-1 gap-[30px] sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-[30px]">
+                <div class="m-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-[30px]">
                     @forelse ($articles as $article)
                         
                     <a href="{{ route('front.details',$article->slug) }}" class="card-news">
