@@ -34,11 +34,11 @@
                             </div>
                             <div class="prevNextButtons flex items-center gap-4 mb-[60px]">
                                 <button
-                                    class="button--previous appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
+                                    class="button--previous appearance-none w-[38px] h-[38px] flex items-center justify-center shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300">
                                     <img src="{{ asset('assets/images/icons/arrow.svg') }}" alt="arrow" />
                                 </button>
                                 <button
-                                    class="button--next appearance-none w-[38px] h-[38px] flex items-center justify-center rounded-full shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300 rotate-180">
+                                    class="button--next appearance-none w-[38px] h-[38px] flex items-center justify-center shrink-0 ring-1 ring-white hover:ring-2 hover:ring-[#FF6B18] transition-all duration-300 rotate-180">
                                     <img src="{{ asset('assets/images/icons/arrow.svg') }}" alt="arrow" />
                                 </button>
                             </div>
