@@ -1,5 +1,1 @@
-# portal-berita
- portofolio portal berita
-
- this website is build with laravel 11 and filament.
- filament like cms builder.
+Web Development adalah proses spesifik membuat situs web dan aplikasi web. Sementara Software Engineering adalah disiplin ilmu yang jauh lebih luas yang mencakup seluruh siklus hidup perancangan, pengembangan, pengujian, dan pemeliharaan semua jenis perangkat lunak (termasuk web, aplikasi seluler, sistem operasi, dll.).
